@@ -1,12 +1,13 @@
 import React from "react";
 import style from './Game.module.scss';
+import {QuestType} from "../App";
 
 // Типизация V
 type GameType = {
-    question: any
-    onClickVariant: any
-    step: any
-    questions: any
+    question: QuestType
+    onClickVariant: (index:number) => void
+    step: number
+    questions: QuestType[]
 }
 
 
@@ -15,13 +16,13 @@ const Game: React.FC<GameType> = ({ question, onClickVariant, step, questions}) 
   return (
     <>
       <div className={style.progress}>
-        <div style={{ width: `50%` /* <= исправить чтобы показывало прогресс ответов на вопросы */ }} className={`${style.progress__inner}`}></div>
+        <div style={{ width: `$(persentage)%` /* <= исправить чтобы показывало прогресс ответов на вопросы */ }} className={`${style.progress__inner}`}></div>
       </div>
-      <h1>{questions.title}</h1> {/* <= Почему-то не показывает title вопроса, исправить */}
+      <h1>{question.title}</h1> {/* <= Почему-то не показывает title вопроса, исправить */}
       <ul>
         {
           question.variants.map((text: string, index: number) => <li
-            onClick={() => onClickVariant(1)}
+            onClick={() => onClickVariant(index)}
             key={text}>{text}</li>)
         }
       </ul>

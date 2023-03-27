@@ -3,11 +3,14 @@ import Game from '../Game';
 import Result from '../Result';
 import style from './App.module.scss'
 
-const questions: {
-  title: any
-  variants: any[]
-  correct: any
-}[] = [
+// type ArrType = Array<string> | string[]
+
+export type QuestType = {
+  title: string
+  variants: string[]
+  correct: number
+}
+const questions: QuestType[] = [
   {
     title: 'React is... ?',
     variants: ['Library', 'Framework', 'App'],
@@ -32,11 +35,11 @@ const questions: {
 
 
 const App = () => {
-  const [step, setStep] = React.useState<any>(0);
-  const [correct, setCorrect] = React.useState<any>(0);
+  const [step, setStep] = React.useState<number>(0);
+  const [correct, setCorrect] = React.useState<number>(0);
   const question = questions[step];
 
-  const onClickVariant = (index: any) => {
+  const onClickVariant = (index: number) => {
     setStep(step + 1);
 
     if (index == question.correct) {
